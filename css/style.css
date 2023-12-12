@@ -251,7 +251,7 @@
 
 
 /*** Team ***/
-.team-item .team-overlay {
+/* .team-item .team-overlay {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -272,7 +272,46 @@
 .team-item .team-overlay .btn:hover {
     color: #FFFFFF;
     background: var(--secondary)
+} */
+
+/*** Latest News Start ***/
+.latest-news .latest-news-carousel.owl-carousel{
+    position: relative;
 }
+
+.latest-news .latest-news-carousel.owl-carousel .owl-nav .owl-prev {
+    position: absolute;
+    top: -65px;
+    right: 70px;
+    font-size: 20px;
+    padding: 2px 20px;
+    transition: 0.5s;
+    margin-right: 10px;
+    border: 1px solid var(--bs-primary);
+    color: var(--bs-dark);
+    border-radius: 20px;
+}
+
+.latest-news .latest-news-carousel.owl-carousel .owl-nav .owl-next {
+    position: absolute;
+    top: -65px;
+    right: 0;
+    font-size: 20px;
+    margin-left: 10px;
+    padding: 2px 20px;
+    transition: 0.5s;
+    border: 1px solid var(--bs-primary);
+    color: var(--bs-dark);
+    border-radius: 20px;
+}
+
+.latest-news .latest-news-carousel.owl-carousel .owl-nav .owl-prev:hover,
+.latest-news .latest-news-carousel.owl-carousel .owl-nav .owl-next:hover {
+    background: var(--bs-primary);
+    color: var(--bs-white);
+    border-radius: 10px;
+}
+/*** Latest News End ***/
 
 
 /*** Testimonial ***/
@@ -380,4 +419,88 @@
     margin-right: 0;
     padding-right: 0;
     border-right: none;
+}
+
+/* My Added CSS*/
+
+/* Top Deals */
+.gallery_box {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 6px 6px #eae9e9;
+}
+.gallery_box:hover {
+    box-shadow: 0px 0px 0px 0px;
+}
+
+/*** Topbar Start ***/
+.sticky-top {
+    transition: 0.5s;
+    background: var(--bs-white);
+}
+
+.topbar {
+    padding: 10px 0;
+}
+
+.topbar .top-info {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+.topbar .top-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 1400px) {
+    .sticky-top .top-link {
+        display: none;
+    }
+    
+}
+
+.topbar .top-link a {
+    font-size: medium;
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+}
+
+.topbar .top-link a small:hover {
+    color: var(--bs-secondary) !important;
+    transition: 0.5s;
+}
+
+.topbar .top-link a small:hover i {
+    color: var(--bs-primary) !important;
+}
+
+/* announcements */
+#note {
+    position:relative;
+    animation: noteAnimate 10s infinite;
+    animation-timing-function: ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+@keyframes noteAnimate {
+    from {left: -735px;}
+    to {left: 735px;}
+}
+
+.link-hover {
+    transition: 0.5s;
+}
+
+.link-hover:hover {
+    color: var(--bs-primary) !important;
 }
