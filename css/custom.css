@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../assets/img/bg-tax.jpeg'); /* Replace with the path to your background image */
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif; /* Optional: Set a default font-family */
+}
+
+.container {
+text-align: center;
+padding: 50px;
+color: white; /* Optional: Set the text color */
+}
