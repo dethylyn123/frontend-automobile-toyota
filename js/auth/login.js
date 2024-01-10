@@ -48,11 +48,11 @@ form_login.onsubmit = async (e) => {
     
     successNotification("Successfully login account.");
 
-    window.location.pathname = "/index.html"
+    window.location.pathname = "/dashboard.html"
 
   }
 // Get response if 422 status code
-    else if (response.status == 422) {
+  else if (response.status == 422) {
     const json = await response.json();
 
     errorNotification(json.message, 5);

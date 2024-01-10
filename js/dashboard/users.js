@@ -248,6 +248,9 @@ import {
       // Background red the card that you want to delete
       document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor =
         "red";
+
+      // Use JS Confirm to ask for confirmation; You can use bootstrap modal instead of this
+      if (confirm("Are you sure you want to delete?")) {
   
       // Fetch API User Item Delete Endpoint
       const response = await fetch(backendURL + "/api/user/" + id, {
@@ -258,9 +261,6 @@ import {
           "ngrok-skip-browser-warning": "69420", // Include ngrok bypass header directly
         },
       });
-
-      // Use JS Confirm to ask for confirmation; You can use bootstrap modal instead of this
-      if (confirm("Are you sure you want to delete?")) {
   
       // Get response if 200-299 status code
       if (response.ok) {

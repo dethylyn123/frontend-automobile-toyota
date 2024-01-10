@@ -15,7 +15,7 @@ setRouter();
 // .then((data) => console.log(data))
 // .catch((err) => console.log(err));
 
-const backendURL = "https://810e-143-44-193-12.ngrok-free.app/webapp-tax-advisor/public";
+const backendURL = "https://d895-143-44-193-12.ngrok-free.app/backend-automobile-toyota/public";
 //Old URL from laravel
 //http://webapp-tax-advisor.test
 
@@ -124,8 +124,8 @@ function errorNotification(message, seconds = 0){
 
     if (seconds != 0) {
         setTimeout(function () {
-            document.querySelector(".alert-success").classList.remove('d-block');
-            document.querySelector(".alert-success").classList.add('d-none');
+            document.querySelector(".alert-danger").classList.remove('d-block');
+            document.querySelector(".alert-danger").classList.add('d-none');
         }, seconds * 1000);
     }
 }
