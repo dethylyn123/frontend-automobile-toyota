@@ -18,7 +18,7 @@ function setRouter() {
             }
             break;
         case "/users.html":
-            if (localStorage.getItem("role") != "Admin") {
+            if (localStorage.getItem("role") != "Dealer" || localStorage.getItem("role") != "Admin") {
                 window.location.pathname = "/dashboard.html";
             }
         default:

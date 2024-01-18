@@ -6,13 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Vehicle</title>
+        <title>Inventory</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/dashboard.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="js/utils/scripts.js" defer></script>
         <!-- <script type="module" src="js/utils/utils.js"></script> -->
-        <script type="module" src="js/dashboard/vehicle.js"></script>
+        <script type="module" src="js/dashboard/inventory.js"></script>
         <script type="module" src="js/dashboard/dashboard.js"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -47,7 +47,7 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="dashboard.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                                 Profile
                             </a>
                             <div class="sb-sidenav-menu-heading">Pages</div>
@@ -56,15 +56,15 @@
                                 Charts
                             </a> -->
                             <a class="nav-link" href="vehicle.html">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-car"></i></div>
                                 Vehicles
                             </a>
                             <a class="nav-link" href="dealer.html">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-calculator"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-search-location"></i></div>
                                 Dealer Locator
                             </a>
                             <a class="nav-link" href="inventory.html">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-calculator"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
                                 Check Inventory
                             </a>
                             <!-- Admin Pages -->
@@ -80,28 +80,13 @@
             </div>
             <div id="layoutSidenav_content">
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Vehicles</h1>
+                    <h1 class="mt-4">Check Inventory</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="dashboard.html">Profile</a></li>
-                        <li class="breadcrumb-item active">Vehicles</li>
+                        <li class="breadcrumb-item"><a href="vehicle.html">Vehicles</a></li>
+                        <li class="breadcrumb-item"><a href="dealer.html">Dealer Locator</a></li>
+                        <li class="breadcrumb-item active">Check Inventory</li>
                     </ol>
-
-                    <!-- Four Images in One Row -->
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="img/Daihatsu-logo.jpeg" alt="Image 1" class="img-fluid">
-                        </div>
-                        <div class="col-md-3">
-                            <img src="img/Hino-logo.jpeg" width="260px" alt="Image 2" class="img-fluid">
-                        </div>
-                        <div class="col-md-3">
-                            <img src="img/Lexus-logo.jpg" alt="Image 3" class="img-fluid">
-                        </div>
-                        <div class="col-md-3">
-                            <img src="img/Toyota-logo.jpeg" width="200px" alt="Image 4" class="img-fluid">
-                        </div>
-                    </div>
-                    <!-- End Four Images in One Row -->
                     
                     <!-- Modal -->
                     <div class="modal fade" id="form_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -112,53 +97,84 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <!-- Input Form -->
-                                <form id="form_vehicles">
+                                <form id="form_inventory">
                                     <!-- Modal Body -->
                                     <div class="modal-body">
-                                        <input type="hidden" name="user_id" id="user_id"/>
-                                        <!-- Dealer Field -->
+                                        <input type="hidden" name="VIN" id="VIN"/>
+                                        <!-- Property Owner Name Field -->
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                            <label for="">Dealer:</label>
+                                            <label for="">In Inventory:</label>
                                             </div>
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="dealer_name" id="dealer_name" required>
-                                            </div>
-                                        </div>
-                                        <!-- Area Field -->
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                            <label for="">Area:</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="area" id="area" required>
+                                            <input class="form-control" type="text" name="in_inventory" id="in_inventory" required>
                                             </div>
                                         </div>
                                         <!-- Address Field -->
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                            <label for="">Address:</label>
+                                            <label for="">Price:</label>
                                             </div>
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="address" id="address" required>
+                                            <input class="form-control" type="text" name="price" id="price" required>
                                             </div>
                                         </div>
-                                        <!-- Phone Field -->
+                                        <!-- Email Field -->
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                            <label for="">Phone:</label>
+                                            <label for="">Transmission:</label>
                                             </div>
                                             <div class="col-sm-9">
-                                            <!-- <input class="form-control" type="text" name="phone" id="phone" required> -->
-                                            <a href="tel:+1234567890" name="phone" id="phone" class="form-control">+1234567890</a>
+                                            <input class="form-control" type="text" name="transmission" id="transmission" required>
                                             </div>
                                         </div>
-                                        
-                                        <!-- Your HTML content -->
-                                        <div id="dealer_container"></div>
-                                        
+                                        <!-- Email Field -->
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                            <label for="">Sold:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="text" name="sold" id="sold" required>
+                                            </div>
+                                        </div>
+                                        <!-- Email Field -->
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                            <label for="">Color:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="text" name="color" id="color" required>
+                                            </div>
+                                        </div>
+                                        <!-- Email Field -->
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                            <label for="">Sale Date:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="text" name="sale_date" id="sale_date" required>
+                                            </div>
+                                        </div>
+                                        <!-- Email Field -->
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                            <label for="">Model:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="text" name="model_id" id="model_id" required>
+                                            </div>
+                                        </div>
+                                        <!-- Email Field -->
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                            <label for="">Brand:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="text" name="brand_id" id="brand_id" required>
+                                            </div>
+                                        </div>
                                         <!-- Image File Field -->
-                                        <!-- <div class="row mb-3">
+                                        <div class="row mb-3">
                                             <div class="col-sm-12">
                                             <input
                                                 class="form-control"
@@ -168,7 +184,7 @@
                                                 
                                             />
                                             </div>
-                                        </div> -->
+                                        </div>
                                     </div>
                                     <!-- End of Modal Body -->
 
@@ -186,28 +202,25 @@
                     <!-- End of Modal -->
 
                     <!-- Search Form -->
-                    <form id="form_search" class="d-flex align-items-center">
-                        <!-- <div class="col-sm-1">
-                            <label for="keyword">Search:</label>
-                        </div>
-                        <div class="col-sm-3">
-                            <input class="form-control" type="text" name="keyword" id="keyword" placeholder="Search Keyword">
-                        </div> -->
-                        
-                        <div class="col-sm-2">
-                            <input class="form-control" type="text" name="brand" id="brand" placeholder="Search by Brand">
-                        </div>
-                        <div class="col-sm-2">
-                            <button class="btn btn-primary mx-2" type="submit">Search</button>
-                        </div>
-                        <!-- Button trigger modal -->
-                        <div class="col-sm-2 ms-auto mt-4">
-                            <button id="modal_show" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form_modal">
-                                Add Vehicles
-                            </button>
+                    <form id="form_search">
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <label for="">Search:</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" name="model" id="model" placeholder="Search Model">
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </div>
+                            <!-- Button trigger modal -->
+                            <div class="col-sm-3 d-flex justify-content-end">
+                                <button id="modal_show" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form_modal">
+                                    Add Vehicles
+                                </button>
+                            </div>
                         </div>
                     </form>
-                    
                     <!-- End of Search Form -->
 
                         <hr />

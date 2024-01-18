@@ -11265,3 +11265,10 @@ hr {
   height: 1px; /* Change the line height/thickness */
   border: none; /* Remove the default border */
   }
+
+/* Leaflet Start */
+#map {
+  height: 320px;
+  width:  510px;
+}
+/* Leaflet End */

@@ -6,13 +6,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Vehicle</title>
+        <title>Dealer Locator</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/dashboard.css" rel="stylesheet" />
+        <!-- Leaflet Start -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+        <!-- Leaflet End -->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="js/utils/scripts.js" defer></script>
         <!-- <script type="module" src="js/utils/utils.js"></script> -->
-        <script type="module" src="js/dashboard/vehicle.js"></script>
+        <script type="module" src="js/dashboard/dealer.js"></script>
         <script type="module" src="js/dashboard/dashboard.js"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -80,95 +88,110 @@
             </div>
             <div id="layoutSidenav_content">
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Vehicles</h1>
+                    <h1 class="mt-4">Dealer Locator</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="dashboard.html">Profile</a></li>
-                        <li class="breadcrumb-item active">Vehicles</li>
+                        <li class="breadcrumb-item"><a href="vehicle.html">Vehicles</a></li>
+                        <li class="breadcrumb-item active">Dealer Locator</li>
                     </ol>
-
-                    <!-- Four Images in One Row -->
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="img/Daihatsu-logo.jpeg" alt="Image 1" class="img-fluid">
-                        </div>
-                        <div class="col-md-3">
-                            <img src="img/Hino-logo.jpeg" width="260px" alt="Image 2" class="img-fluid">
-                        </div>
-                        <div class="col-md-3">
-                            <img src="img/Lexus-logo.jpg" alt="Image 3" class="img-fluid">
-                        </div>
-                        <div class="col-md-3">
-                            <img src="img/Toyota-logo.jpeg" width="200px" alt="Image 4" class="img-fluid">
-                        </div>
-                    </div>
-                    <!-- End Four Images in One Row -->
-                    
                     <!-- Modal -->
                     <div class="modal fade" id="form_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Vehicle Form</h1>
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Inventory Form</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <!-- Input Form -->
-                                <form id="form_vehicles">
+                                <form id="form_dealers">
                                     <!-- Modal Body -->
                                     <div class="modal-body">
                                         <input type="hidden" name="user_id" id="user_id"/>
-                                        <!-- Dealer Field -->
+                                        <!-- Dealer Name Field -->
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                            <label for="">Dealer:</label>
+                                            <label for="">VIN:</label>
                                             </div>
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="dealer_name" id="dealer_name" required>
+                                            <input class="form-control" type="text" name="VIN" id="VIN" required>
                                             </div>
                                         </div>
                                         <!-- Area Field -->
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                            <label for="">Area:</label>
+                                            <label for="">Model Name:</label>
                                             </div>
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="area" id="area" required>
+                                            <input class="form-control" type="text" name="model_name" id="model_name" required>
                                             </div>
                                         </div>
                                         <!-- Address Field -->
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                            <label for="">Address:</label>
+                                            <label for="">Category:</label>
                                             </div>
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="address" id="address" required>
+                                            <input class="form-control" type="text" name="category" id="category" required>
                                             </div>
                                         </div>
                                         <!-- Phone Field -->
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                            <label for="">Phone:</label>
+                                            <label for="">Price:</label>
                                             </div>
                                             <div class="col-sm-9">
-                                            <!-- <input class="form-control" type="text" name="phone" id="phone" required> -->
-                                            <a href="tel:+1234567890" name="phone" id="phone" class="form-control">+1234567890</a>
+                                            <input class="form-control" type="text" name="price" id="price" required>
                                             </div>
                                         </div>
-                                        
-                                        <!-- Your HTML content -->
-                                        <div id="dealer_container"></div>
-                                        
-                                        <!-- Image File Field -->
-                                        <!-- <div class="row mb-3">
-                                            <div class="col-sm-12">
-                                            <input
-                                                class="form-control"
-                                                type="file"
-                                                name="image"
-                                                accept="image/*"
-                                                
-                                            />
+                                        <!-- VIN Field -->
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                            <label for="">Color:</label>
                                             </div>
-                                        </div> -->
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="text" name="color" id="color" required>
+                                            </div>
+                                        </div>
+                                        <!-- Manufacturer ID Field -->
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                            <label for="">Stock:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="text" name="stock" id="stock" required>
+                                            </div>
+                                        </div>
+                                        <!-- Manufacturer ID Field -->
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                            <label for="">Sales:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="text" name="sales" id="sales" required>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                            <label for="">Dealer:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="text" name="dealer" id="dealer" required>
+                                            </div>
+                                        </div>
+
+                                        <!-- Inventory Container -->
+                                        <div id="inventory_container"></div>
+
+                                        
+                                        <!-- Image Display Area -->
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                                <label for="">Image:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <img class="img-fluid image_display" alt="Image Preview">
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- End of Modal Body -->
 
@@ -186,34 +209,69 @@
                     <!-- End of Modal -->
 
                     <!-- Search Form -->
-                    <form id="form_search" class="d-flex align-items-center">
-                        <!-- <div class="col-sm-1">
-                            <label for="keyword">Search:</label>
-                        </div>
-                        <div class="col-sm-3">
-                            <input class="form-control" type="text" name="keyword" id="keyword" placeholder="Search Keyword">
-                        </div> -->
-                        
-                        <div class="col-sm-2">
-                            <input class="form-control" type="text" name="brand" id="brand" placeholder="Search by Brand">
-                        </div>
-                        <div class="col-sm-2">
-                            <button class="btn btn-primary mx-2" type="submit">Search</button>
-                        </div>
-                        <!-- Button trigger modal -->
-                        <div class="col-sm-2 ms-auto mt-4">
-                            <button id="modal_show" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form_modal">
-                                Add Vehicles
-                            </button>
+                    <form id="form_search">
+                        <div class="row">
+                            <!-- uncomment if using input instead of select -->
+                            <!-- <div class="col-sm-2">
+                                <label for="">select area:</label>
+                            </div> -->
+                            <div class="col-sm-3">
+                                <!-- <input class="form-control" type="text" name="dealer_name" id="address" placeholder="Search Dealer"> -->
+
+                                <!-- <select class="form-select" id="area" name="area">
+                                    <option selected disabled>select area</option>
+                                    <option value="Metro Manila">Metro Manila</option>
+                                    <option value="Luzon">Luzon</option>
+                                </select> -->
+                            </div>
+                            <div class="col-sm-4">
+                                <!-- <input class="form-control" type="text" name="dealer_name" id="address" placeholder="Search Dealer"> -->
+
+                                <select class="form-select" id="dealer_name" name="dealer_name">
+                                    <option selected disabled>select dealer</option>
+                                    <option value="PeakMove Cubao">(Metro Manila)PeakMove Cubao</option>
+                                    <option value="PeakMove Pasig">(Metro Manila)PeakMove Pasig</option>
+                                    <option value="PeakMove Valenzuela">(Metro Manila)PeakMove Valenzuela</option>
+                                    <option value="PeakMove Albay">(Luzon)PeakMove Albay</option>
+                                    <option value="PeakMove Bacoor, Cavite, INC.">(Luzon)PeakMove Bacoor, Cavite, INC.</option>
+                                    <option value="PeakMove Cebu City, INC.">(Visayas)PeakMove Cebu City, INC.</option>
+                                    <option value="PeakMove Calbayog, Samar">(Visayas)PeakMove Calbayog, Samar
+                                    </option>
+                                    <option value="PeakMove Butuan City">(Mindanao)PeakMove Butuan City
+                                    </option>
+                                    </option>
+                                    <option value="PeakMove Cagayan de Oro, INC.">(Mindanao)PeakMove Cagayan de Oro, INC.
+                                    </option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-primary" type="submit">Find Dealer</button>
+                            </div>
+                            <!-- Button trigger modal -->
+                            <div class="col-sm-3 d-flex justify-content-end">
+                                <button id="modal_show" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form_modal">
+                                    Add Dealer Locator
+                                </button>
+                            </div>
                         </div>
                     </form>
-                    
                     <!-- End of Search Form -->
 
                         <hr />
                 
                         <br />
                     
+                    <!-- Goggle Map -->
+                    <!-- <div>
+                        <h4 class="text-danger mb-2 ms-5">Map</h4>
+                        <div id="map"></div>
+                    </div> -->
+                        
+                    <div class="ms-5 ps-5 mt-3 text-danger text-center mb-4">
+                        <h4>Dealer List</h4>
+                    </div>
+
                     <!-- Notification -->
                     <div class="alert alert-danger d-none mb-2" role="alert"></div>
                     <div class="alert alert-success d-none mb-2" role="alert"></div>
@@ -251,6 +309,7 @@
                 </footer>
             </div>
         </div>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script> -->

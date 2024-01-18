@@ -15,7 +15,7 @@ setRouter();
 // .then((data) => console.log(data))
 // .catch((err) => console.log(err));
 
-const backendURL = "https://d895-143-44-193-12.ngrok-free.app/backend-automobile-toyota/public";
+const backendURL = "https://c3f8-143-44-193-52.ngrok-free.app/backend-automobile-toyota/public";
 //Old URL from laravel
 //http://webapp-tax-advisor.test
 
@@ -69,9 +69,9 @@ async function getLoggedUser(){
 
 // Show Admin Pages
 function showNavAdminPages() {
-  if (localStorage.getItem("role") == "Admin") {
+  if (localStorage.getItem("role") == "Dealer" || localStorage.getItem("role") == "Admin") {
    document.getElementById("nav_admin_pages").innerHTML = 
-    `<div class="sb-sidenav-menu-heading">Admin Pages</div>
+    `<div class="sb-sidenav-menu-heading">Dealer Pages</div>
     <a class="nav-link" href="users.html">
         <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
         Users

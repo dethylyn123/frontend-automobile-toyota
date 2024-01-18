@@ -61,5 +61,5 @@ form_login.onsubmit = async (e) => {
 
 // Enable button
   document.querySelector("#form_login button").disabled = false;
-document.querySelector("#form_login button").innerHTML = 'Login';
+  document.querySelector("#form_login button").innerHTML = 'Login';
 };
