@@ -100,7 +100,7 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Inventory Form</h1>
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Dealer Inventory List</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <!-- Input Form -->
@@ -109,90 +109,72 @@
                                     <div class="modal-body">
                                         <input type="hidden" name="user_id" id="user_id"/>
                                         <!-- Dealer Name Field -->
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                            <label for="">VIN:</label>
-                                            </div>
+                                        <div class="row">
+                                            
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="VIN" id="VIN" required>
+                                            <input class="form-control" type="hidden" name="VIN" id="VIN" required>
                                             </div>
                                         </div>
                                         <!-- Area Field -->
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                            <label for="">Model Name:</label>
-                                            </div>
+                                        <div class="row">
+                                            
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="model_name" id="model_name" required>
+                                            <input class="form-control" type="hidden" name="model_name" id="model_name" required>
                                             </div>
                                         </div>
                                         <!-- Address Field -->
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                            <label for="">Category:</label>
-                                            </div>
+                                        <div class="row">
+                                            
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="category" id="category" required>
+                                            <input class="form-control" type="hidden" name="category" id="category" required>
                                             </div>
                                         </div>
                                         <!-- Phone Field -->
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                            <label for="">Price:</label>
-                                            </div>
+                                        <div class="row">
+                                            
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="price" id="price" required>
+                                            <input class="form-control" type="hidden" name="price" id="price" required>
                                             </div>
                                         </div>
                                         <!-- VIN Field -->
                                         <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                            <label for="">Color:</label>
-                                            </div>
+                                            
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="color" id="color" required>
+                                            <input class="form-control" type="hidden" name="color" id="color" required>
                                             </div>
                                         </div>
                                         <!-- Manufacturer ID Field -->
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                            <label for="">Stock:</label>
-                                            </div>
+                                        <div class="row">
+                                            
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="stock" id="stock" required>
+                                            <input class="form-control" type="hidden" name="stock" id="stock" required>
                                             </div>
                                         </div>
                                         <!-- Manufacturer ID Field -->
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                            <label for="">Sales:</label>
-                                            </div>
+                                        <div class="row">
+                                            
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="sales" id="sales" required>
+                                            <input class="form-control" type="hidden" name="sales" id="sales" required>
                                             </div>
                                         </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                            <label for="">Dealer:</label>
-                                            </div>
+                                        <div class="row">
+                                            
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="dealer" id="dealer" required>
+                                            <input class="form-control" type="hidden" name="dealer" id="dealer" required>
+                                            </div>
+                                        </div>
+                                    
+                                        <!-- Image Display Area -->
+                                        <div class="row mb-3">
+                                            
+                                            <div class="col-sm-9">
+                                                <input type="hidden" class="image-fluid image_display" accept="image/*">
                                             </div>
                                         </div>
 
                                         <!-- Inventory Container -->
                                         <div id="inventory_container"></div>
-
                                         
-                                        <!-- Image Display Area -->
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                                <label for="">Image:</label>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <img class="img-fluid image_display" alt="Image Preview">
-                                            </div>
-                                        </div>
                                     </div>
                                     <!-- End of Modal Body -->
 
@@ -247,14 +229,8 @@
                         <hr />
                 
                         <br />
-                    
-                    <!-- Goggle Map -->
-                    <!-- <div>
-                        <h4 class="text-danger mb-2 ms-5">Map</h4>
-                        <div id="map"></div>
-                    </div> -->
                         
-                    <div class="ms-5 ps-5 mt-3 text-center mb-4">
+                    <div class="ms-5 mt-3 text-center mb-4">
                         <h4>Dealer List</h4>
                     </div>
 

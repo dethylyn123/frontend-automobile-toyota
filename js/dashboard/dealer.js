@@ -377,7 +377,7 @@ const showData = async (id) => {
     const propertiesToShow = ['VIN', 'model_name', 'category', 'price', 'color', 'stock', 'sales', 'dealer','image'];
 
     for (const inventoryData of json.inventory) {
-      inventoryContainer += "<hr>"; // Separate inventory items with a horizontal line
+      
 
       for (const key of propertiesToShow) {
         if (inventoryData.hasOwnProperty(key)) {
@@ -405,6 +405,7 @@ const showData = async (id) => {
         }
       }
     }
+    inventoryContainer += "<hr>"; // Separate inventory items with a horizontal line
 
     document.getElementById("inventory_container").innerHTML = inventoryContainer;
 
