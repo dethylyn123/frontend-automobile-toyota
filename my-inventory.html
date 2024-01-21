@@ -9,6 +9,7 @@
         <title>Inventory</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/dashboard.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/custom.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="js/utils/scripts.js" defer></script>
         <!-- <script type="module" src="js/utils/utils.js"></script> -->
@@ -203,18 +204,18 @@
 
                     <!-- Search Form -->
                     <form id="form_search">
-                        <div class="row">
-                            <div class="col-sm-1 mt-2">
-                                <label for="">Search:</label>
-                            </div>
-                            <div class="col-sm-6">
-                                <input class="form-control" type="text" name="model" id="model" >
+                        <div class="row mt-5">
+                            <div class="col-sm-4">
+                                <div class="oval-container">
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                    <input class="form-control oval-input" type="text" name="model" id="model" placeholder="Search">
+                                </div>
                             </div>
                             <div class="col-sm-2">
-                                <button class="btn btn-primary" type="submit">Search</button>
+                                <button class="btn btn-primary oval-button" type="submit">Search</button>
                             </div>
                             <!-- Button trigger modal -->
-                            <div class="col-sm-3 d-flex justify-content-end">
+                            <div class="col-sm-4 d-flex justify-content-end">
                                 <button id="modal_show" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form_modal">
                                     Add Vehicles
                                 </button>

@@ -94,9 +94,9 @@ async function getData(url = "", keyword = "") {
                             <h6 class="card-title"><b>Sales:</b>     ${element.sales}</h5>
                             <h6 class="card-text"><b>Dealer:</b>     ${element.dealer}</h6>
                             </div>
-                            <span class="card-subtitle text-body-secondary mt-5">
+                            <h6 class="card-subtitle text-body-secondary mt-3">
                             <small><b>Date created:</b>     ${date}</small>
-                            </span>
+                            </h6>
                         </div>
                         </div>
                     </div>

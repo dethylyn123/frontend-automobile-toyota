@@ -9,6 +9,7 @@
         <title>Dealer Locator</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/dashboard.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/custom.css">
         <!-- Leaflet Start -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
@@ -210,43 +211,28 @@
 
                     <!-- Search Form -->
                     <form id="form_search">
-                        <div class="row">
-                            <!-- uncomment if using input instead of select -->
-                            <!-- <div class="col-sm-2">
-                                <label for="">select area:</label>
-                            </div> -->
-                            <div class="col-sm-3">
-                                <!-- <input class="form-control" type="text" name="dealer_name" id="address" placeholder="Search Dealer"> -->
-
-                                <!-- <select class="form-select" id="area" name="area">
-                                    <option selected disabled>select area</option>
-                                    <option value="Metro Manila">Metro Manila</option>
-                                    <option value="Luzon">Luzon</option>
-                                </select> -->
-                            </div>
+                        <div class="row mt-5">
+                            <!-- <div class="col-sm-3"></div> -->
                             <div class="col-sm-4">
-                                <!-- <input class="form-control" type="text" name="dealer_name" id="address" placeholder="Search Dealer"> -->
-
-                                <select class="form-select" id="dealer_name" name="dealer_name">
-                                    <option selected disabled>select dealer</option>
-                                    <option value="PeakMove Cubao">(Metro Manila)PeakMove Cubao</option>
-                                    <option value="PeakMove Pasig">(Metro Manila)PeakMove Pasig</option>
-                                    <option value="PeakMove Valenzuela">(Metro Manila)PeakMove Valenzuela</option>
-                                    <option value="PeakMove Albay">(Luzon)PeakMove Albay</option>
-                                    <option value="PeakMove Bacoor, Cavite, INC.">(Luzon)PeakMove Bacoor, Cavite, INC.</option>
-                                    <option value="PeakMove Cebu City, INC.">(Visayas)PeakMove Cebu City, INC.</option>
-                                    <option value="PeakMove Calbayog, Samar">(Visayas)PeakMove Calbayog, Samar
-                                    </option>
-                                    <option value="PeakMove Butuan City">(Mindanao)PeakMove Butuan City
-                                    </option>
-                                    </option>
-                                    <option value="PeakMove Cagayan de Oro, INC.">(Mindanao)PeakMove Cagayan de Oro, INC.
-                                    </option>
-                                    <!-- Add more options as needed -->
-                                </select>
+                                <div class="oval-container">
+                                    <!-- <span class="input-group-text"><i class="fas fa-search"></i></span> -->
+                                    <select class="form-select oval-input" id="dealer_name" name="dealer_name">
+                                        <option class="text-muted" selected disabled>Select Dealer</option>
+                                        <option value="PeakMove Cubao">(Metro Manila)PeakMove Cubao</option>
+                                        <option value="PeakMove Pasig">(Metro Manila)PeakMove Pasig</option>
+                                        <option value="PeakMove Valenzuela">(Metro Manila)PeakMove Valenzuela</option>
+                                        <option value="PeakMove Albay">(Luzon)PeakMove Albay</option>
+                                        <option value="PeakMove Bacoor, Cavite, INC.">(Luzon)PeakMove Bacoor, Cavite, INC.</option>
+                                        <option value="PeakMove Cebu City, INC.">(Visayas)PeakMove Cebu City, INC.</option>
+                                        <option value="PeakMove Calbayog, Samar">(Visayas)PeakMove Calbayog, Samar</option>
+                                        <option value="PeakMove Butuan City">(Mindanao)PeakMove Butuan City</option>
+                                        <option value="PeakMove Cagayan de Oro, INC.">(Mindanao)PeakMove Cagayan de Oro, INC.</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-sm-2">
-                                <button class="btn btn-primary" type="submit">Find Dealer</button>
+                                <button class="btn btn-primary oval-button" type="submit">Find Dealer</button>
                             </div>
                             <!-- Button trigger modal -->
                             <div class="col-sm-3 d-flex justify-content-end">
@@ -268,7 +254,7 @@
                         <div id="map"></div>
                     </div> -->
                         
-                    <div class="ms-5 ps-5 mt-3 text-danger text-center mb-4">
+                    <div class="ms-5 ps-5 mt-3 text-center mb-4">
                         <h4>Dealer List</h4>
                     </div>
 

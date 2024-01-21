@@ -87,14 +87,14 @@ async function getData(url = "", keyword = "") {
                             <h6 class="card-text"><b>Color:</b>     ${element.color}</h6>
                             <h6 class="card-text"><b>Brand:</b>     ${element.models.brand.brand_name}</h6>
                             </div>
-                            <span class="card-subtitle text-body-secondary mt-5">
+                            <h6 class="card-subtitle text-body-secondary mt-4">
                             <small><b>Date created:</b>     ${date}</small>
-                            </span>
+                            </h6>
                         </div>
                         </div>
                         
-                        <div class="col-sm-12 text-center">
-                            <a class="col-sm-2 btn btn-danger mb-2" href="#" id="btn_edit" data-id="${element.VIN}">Inquire</a>
+                        <div class="col-sm-8 text-center ps-5 ms-5">
+                            <a class="col-sm-2 btn btn-danger mb-2" href="#" id="btn_edit" data-id="${element.VIN}"><i class="fas fa-inbox"></i> Inquire</a>
                         </div>
 
                     </div>

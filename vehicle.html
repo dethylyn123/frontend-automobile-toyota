@@ -9,6 +9,7 @@
         <title>Vehicle</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/dashboard.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/custom.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="js/utils/scripts.js" defer></script>
         <!-- <script type="module" src="js/utils/utils.js"></script> -->
@@ -194,11 +195,14 @@
                             <input class="form-control" type="text" name="keyword" id="keyword" placeholder="Search Keyword">
                         </div> -->
                         
-                        <div class="col-sm-2">
-                            <input class="form-control" type="text" name="brand" id="brand" placeholder="Search by Brand">
+                        <div class="col-sm-4">
+                            <div class="oval-container">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                <input class="form-control oval-input" type="text" name="brand" id="brand" placeholder="Search a Brand">
+                            </div>
                         </div>
                         <div class="col-sm-2">
-                            <button class="btn btn-primary mx-2" type="submit">Search</button>
+                            <button class="btn btn-primary mx-2 oval-button" type="submit">Search</button>
                         </div>
                         <!-- Button trigger modal -->
                         <div class="col-sm-2 ms-auto mt-4">

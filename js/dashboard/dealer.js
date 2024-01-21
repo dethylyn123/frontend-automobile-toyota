@@ -72,22 +72,22 @@ async function getData(url = "", dealer_name = "") {
 
                                 <div class="col-sm-7">
                                     
-                                        <small>Dealer</small><h5 class="card-title">${element.dealer_name}</h5>
-                                        <small>Area</small><h5 class="card-title">${element.area}</h5>
-                                        <small>Address</small><h5 class="card-title">${element.address}</h5>
-                                        <small>Phone</small><h5 class="card-title">
+                                        <small><i class="fas fa-user-tie"></i> Dealer</small><h5 class="card-title">${element.dealer_name}</h5>
+                                        <small><i class="fas fa-chart-area"></i> Area</small><h5 class="card-title">${element.area}</h5>
+                                        <small><i class="fas fa-location-arrow"></i> Address</small><h5 class="card-title">${element.address}</h5>
+                                        <small><i class="fas fa-phone"></i> Phone</small><h5 class="card-title">
                                         <a href="tel:${element.phone}">${element.phone}</a>
                                         </h5>                                         
-                                        <h6 class="card-subtitle mb-2 text-body-secondary">
-                                            <small>${date}</small>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary mt-4">
+                                            <small><i class="fas fa-calendar"></i> ${date}</small>
                                         </h6>
                                         
                                     </div>
                                 </div>
 
-                                <div class="col-sm-12 text-center">
-                                    <a class="col-sm-2 btn btn-danger mb-2" href="#" id="btn_edit" data-id="${element.dealer_id}">View Inventory</a>
-                                </div>
+                                <div class="col-sm-10 text-center ps-5 ms-5">
+                                  <a class="col-sm-2 btn btn-danger mb-2" href="#" id="btn_edit" data-id="${element.dealer_id}"><i class="fas fa-business-time"></i> View Inventory</a>
+                              </div>
 
                             </div>     
                         </div>
@@ -336,9 +336,9 @@ let for_update_id = "";
 // Show Functionality
 const showData = async (id) => {
 
-  // Background Yellow the card you want to delete
-  document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor =
-    "yellow";
+  // Background red the card you want to edit
+  document.querySelector(`.card[data-id="${id}"]`).style.borderColor =
+    "red";
 
   // Fetch API dealer show endpoint
   const response = await fetch(
