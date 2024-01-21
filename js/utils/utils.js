@@ -4,30 +4,11 @@ import {setRouter} from "../router/router.js";
 // Set Router
 setRouter();
 
-// Ngrok; prevent brower to show warning
-// fetch(backendURL, {
-//   method: "get",
-//   headers: new Headers ({
-//       "ngrok-skip-browser-warning": "69420",
-// }),
-// })
-// .then((response) => response.json())
-// .then((data) => console.log(data))
-// .catch((err) => console.log(err));
-
-const backendURL = "https://c3f8-143-44-193-52.ngrok-free.app/backend-automobile-toyota/public";
-//Old URL from laravel
-//http://webapp-tax-advisor.test
+const backendURL = "https://7bc5-143-44-193-12.ngrok-free.app/backend-automobile-toyota/public";
 
 // Get Logged User Profile Name
 async function getLoggedUser(){
-  // const ngrokBypassHeader = new Headers({
-  //   "ngrok-skip-browser-warning": "69420",
-  // });
-    // Ngrok bypass code
-    // const ngrokBypassHeader = new Headers({
-    // "ngrok-skip-browser-warning": "69420",
-    // });
+  
     // Access User Profile API Endpoint
     const response = await fetch(
       backendURL + "/api/profile/show",
@@ -72,9 +53,9 @@ function showNavAdminPages() {
   if (localStorage.getItem("role") == "Dealer" || localStorage.getItem("role") == "Admin") {
    document.getElementById("nav_admin_pages").innerHTML = 
     `<div class="sb-sidenav-menu-heading">Dealer Pages</div>
-    <a class="nav-link" href="users.html">
-        <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
-        Users
+    <a class="nav-link" href="my-inventory.html">
+        <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+        My Inventory
     </a>`;
   }
 }
