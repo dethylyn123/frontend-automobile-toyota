@@ -1,4 +1,4 @@
-import { backendURL, showNavAdminPages, successNotification, errorNotification, getLoggedUser, } from "../utils/utils.js";
+import { backendURL, showNavDealerPages, showNavAdminPages, successNotification, errorNotification, getLoggedUser, } from "../utils/utils.js";
 
 // calling function - important to execute the code inside the function
 getLoggedUser();
@@ -7,6 +7,8 @@ getLoggedUser();
 getData();
 
 showNavAdminPages();
+
+showNavDealerPages();
 
 async function getData(url = "", keyword = "") {
     // Add Loading if pagination or search is used; Remove if it's not needed
@@ -69,17 +71,7 @@ async function getData(url = "", keyword = "") {
 
                         <div class="col-sm-8">
                         <div class="card-body">
-                            <div class="dropdown float-end">
-                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                <a class="dropdown-item" href="#" id="btn_edit" data-id="${element.inventory_id}">Edit</a>
-                                </li>
-                                <li>
-                                <a class="dropdown-item" href="#" id="btn_delete" data-id="${element.inventory_id}">Delete</a>
-                                </li>
-                            </ul>
-                            </div>
+                            
                             <div>
                             <h6 class="card-title"><b>VIN:</b>     ${element.VIN}</h5>
                             <h6 class="card-text"><b>Model Name:</b>     ${element.model_name}</h6>

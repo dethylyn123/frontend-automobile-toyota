@@ -11286,3 +11286,16 @@ hr {
   background-color: rgba(0, 0, 0, 0.7); /* Adjust the alpha value for darkness */
   z-index: -1; /* Ensure it's behind other content */
 }
+
+.back-button {
+  text-decoration: none !important;
+  color: gray;
+  transition: color 0.3s ease; /* Add a smooth transition effect for the color change */
+}
+
+.back-button:hover {
+  color: white !important;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8) !important; /* Add a glowing effect using text-shadow */
+}
+
+

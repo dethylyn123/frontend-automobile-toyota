@@ -1,10 +1,12 @@
-import { backendURL, showNavAdminPages, successNotification, errorNotification, getLoggedUser, } from "../utils/utils.js";
+import { backendURL, showNavDealerPages, showNavAdminPages, successNotification, errorNotification, getLoggedUser, } from "../utils/utils.js";
 
 // calling function - important to execute the code inside the function
 getLoggedUser();
 
 // Get All Data
 getData();
+
+showNavAdminPages();
 
 showNavAdminPages();
 
@@ -75,7 +77,6 @@ async function getData(url = "", keyword = "") {
 
                         <div class="col-sm-8">
                         <div class="card-body">
-                                           
        
                             <div>
                             <h6 class="card-title"><b>VIN:</b>     ${element.VIN}</h5>
@@ -94,7 +95,7 @@ async function getData(url = "", keyword = "") {
                         </div>
                         
                         <div class="col-sm-8 text-center ps-5 ms-5">
-                            <a class="col-sm-2 btn btn-danger mb-2" href="#" id="btn_edit" data-id="${element.VIN}"><i class="fas fa-inbox"></i> Inquire</a>
+                            <a class="col-sm-2 btn btn-danger mb-2" href="#" id="btn_edit" data-id="${element.VIN}"><i class="fa fa-shopping-bag"></i> Inquire</a>
                         </div>
 
                     </div>

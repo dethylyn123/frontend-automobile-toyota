@@ -1,12 +1,14 @@
 // To see errors in console using javascript
 // "use strict";
-import { backendURL, showNavAdminPages, successNotification, errorNotification, getLoggedUser} from "../utils/utils.js";
+import { backendURL, showNavDealerPages, showNavAdminPages, successNotification, errorNotification, getLoggedUser} from "../utils/utils.js";
 
 // calling function - important to execute the code inside the function
 getLoggedUser();
 
 // call the function showAdminUser from utils js file
-// Get admin pages
+// Get dealer pages
+showNavDealerPages();
+
 showNavAdminPages();
 
 // Logout Btn
@@ -34,7 +36,7 @@ btn_logout.onclick = async () => {
     successNotification("Logout Successfully.");
 
     // Redirect Page
-    window.location.pathname = "/login.html";
+    window.location.pathname = "/index.html";
 
   }     
   // Get response if 400 or 500 status code

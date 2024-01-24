@@ -1,4 +1,4 @@
-import { backendURL, showNavAdminPages, successNotification, errorNotification, getLoggedUser, } from "../utils/utils.js";
+import { backendURL, showNavDealerPages, showNavAdminPages, successNotification, errorNotification, getLoggedUser, } from "../utils/utils.js";
 
 // calling function - important to execute the code inside the function
 getLoggedUser();
@@ -7,6 +7,8 @@ getLoggedUser();
 getData();
 
 showNavAdminPages();
+
+showNavDealerPages();
 
 async function getData(url = "", dealer_name = "") {
   // Add Loading if pagination or search is used; Remove if its not needed

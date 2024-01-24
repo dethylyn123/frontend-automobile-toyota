@@ -4,7 +4,7 @@ import {setRouter} from "../router/router.js";
 // Set Router
 setRouter();
 
-const backendURL = "https://dae9-119-111-204-227.ngrok-free.app/backend-automobile-toyota/public";
+const backendURL = "http://backend-automobile-toyota.test";
 
 // Get Logged User Profile Name
 async function getLoggedUser(){
@@ -24,9 +24,9 @@ async function getLoggedUser(){
   // Get response if 200-299 status code
     if (response.ok) {
       const json = await response.json();
-  
+      // console.log(json);
       document.getElementById("user_logged_name").innerHTML = 
-        json.firstname + " " + json.lastname;
+        json.firstname   + " " + json.lastname;
 
        // Display user's image
       const imagePath = backendURL + "/storage/" + json.image;
@@ -49,13 +49,25 @@ async function getLoggedUser(){
 };
 
 // Show Admin Pages
-function showNavAdminPages() {
-  if (localStorage.getItem("role") == "Dealer" || localStorage.getItem("role") == "Admin") {
-   document.getElementById("nav_admin_pages").innerHTML = 
+function showNavDealerPages() {
+  if (localStorage.getItem("role") == "Dealer") {
+   document.getElementById("nav_dealer_pages").innerHTML = 
     `<div class="sb-sidenav-menu-heading">Dealer Pages</div>
     <a class="nav-link" href="my-inventory.html">
         <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
         My Inventory
+    </a>`;
+  }
+}
+
+// Show Admin Pages
+function showNavAdminPages() {
+  if (localStorage.getItem("role") == "Admin") {
+   document.getElementById("nav_admin_pages").innerHTML = 
+    `<div class="sb-sidenav-menu-heading">Dealer Pages</div>
+    <a class="nav-link" href="admin.html">
+        <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+        Dealer 
     </a>`;
   }
 }
@@ -111,4 +123,4 @@ function errorNotification(message, seconds = 0){
     }
 }
 
-export { backendURL, showNavAdminPages, successNotification, errorNotification, getLoggedUser};
+export { backendURL, showNavAdminPages, showNavDealerPages, successNotification, errorNotification, getLoggedUser};
