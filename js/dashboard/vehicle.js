@@ -6,7 +6,7 @@ getLoggedUser();
 // Get All Data
 getData();
 
-showNavAdminPages();
+showNavDealerPages();
 
 showNavAdminPages();
 

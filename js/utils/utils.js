@@ -57,6 +57,16 @@ function showNavDealerPages() {
         <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
         My Inventory
     </a>`;
+    
+    // Highlight the active page
+    var currentPageUrl = window.location.href;
+    var navLinks = document.querySelectorAll('#nav_admin_pages .nav-link');
+
+    navLinks.forEach(function(link) {
+        if (link.href === currentPageUrl) {
+            link.classList.add('active');
+        }
+    });
   }
 }
 
@@ -64,11 +74,50 @@ function showNavDealerPages() {
 function showNavAdminPages() {
   if (localStorage.getItem("role") == "Admin") {
    document.getElementById("nav_admin_pages").innerHTML = 
-    `<div class="sb-sidenav-menu-heading">Dealer Pages</div>
-    <a class="nav-link" href="admin.html">
-        <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-        Dealer 
-    </a>`;
+    `<div class="sb-sidenav-menu-heading">Admin Pages</div>
+    <a class="nav-link" href="user.html">
+        <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+        Users
+    </a>
+    <a class="nav-link" href="admin-vehicle.html">
+        <div class="sb-nav-link-icon"><i class="fa-solid fa-car"></i></div>
+        Vehicles
+    </a>
+    <a class="nav-link" href="supplier.html">
+        <div class="sb-nav-link-icon"><i class="fa-solid fa-truck-field"></i></div>
+        Suppliers 
+    </a>
+    <a class="nav-link" href="sale.html">
+        <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
+        Sales 
+    </a>
+    <a class="nav-link" href="model.html">
+        <div class="sb-nav-link-icon"><i class="fa-solid fa-car-side"></i></div>
+        Models 
+    </a>
+    <a class="nav-link" href="admin-inventory.html">
+        <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
+        Inventories 
+    </a>
+    <a class="nav-link" href="admin-dealer.html">
+        <div class="sb-nav-link-icon"><i class="fa-solid fa-building-circle-arrow-right"></i></div>
+        Dealers 
+    </a>
+    <a class="nav-link" href="customer.html">
+        <div class="sb-nav-link-icon"><i class="fa-solid fa-person"></i></div>
+        Customers 
+    </a>
+    `;
+
+    // Highlight the active page
+    var currentPageUrl = window.location.href;
+    var navLinks = document.querySelectorAll('#nav_admin_pages .nav-link');
+
+    navLinks.forEach(function(link) {
+        if (link.href === currentPageUrl) {
+            link.classList.add('active');
+        }
+    });
   }
 }
 

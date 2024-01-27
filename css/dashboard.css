@@ -11298,4 +11298,8 @@ hr {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.8) !important; /* Add a glowing effect using text-shadow */
 }
 
-
+/* Add this style to your CSS */
+.nav-link.active {
+  background-color: #087E8B; /* Highlight color */
+  color: #ffffff; /* Text color */
+}

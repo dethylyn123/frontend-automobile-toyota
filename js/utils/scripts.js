@@ -24,3 +24,20 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+// Add this script to your HTML file
+
+    // Get the current page URL
+    var currentPageUrl = window.location.href;
+
+    // Select all navigation links
+    var navLinks = document.querySelectorAll('.nav-link');
+
+    // Loop through each navigation link
+    navLinks.forEach(function(link) {
+        // Check if the link's href matches the current page URL
+        if (link.href === currentPageUrl) {
+            // Add a class to highlight the active page
+            link.classList.add('active');
+        }
+    });

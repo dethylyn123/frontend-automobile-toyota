@@ -6,13 +6,26 @@ getLoggedUser();
 // Get All Data
 getData();
 
+showNavDealerPages();
+
 showNavAdminPages();
 
-showNavDealerPages();
+// Page Functionality
+const pageAction = async (e) => {
+    // Get url from data-url attribute within the btn_pagination anchor tag
+    const url = e.target.getAttribute("data-url");
+    
+    // Get search keyword from the form
+    const formData = new FormData(form_search);
+    const brandKeyword = formData.get("brand");
+  
+    // Refresh card list with the correct parameters
+    getData(url, brandKeyword);
+  }
 
 async function getData(url = "", keyword = "") {
   // Add Loading if pagination or search is used; Remove if its not needed
-  if (url != "" || keyword != "") {
+  if (url !== "" || keyword !== "") {
     document.getElementById("get_data").innerHTML = 
     `<div class="col-sm-12 d-flex justify-content-center align-items-center">
         <div class="spinner-border" role="status">
@@ -60,6 +73,7 @@ async function getData(url = "", keyword = "") {
     const json = await response.json();
 
     console.log(json);
+
     // Get Each Json Elements and merge with HTML element and put it into a container 
     let container = "";
     // Now caters pagination; You can use "json.data" if using pagination or "json" only if no pagination
@@ -76,22 +90,35 @@ async function getData(url = "", keyword = "") {
 
                         <div class="col-sm-8">
                         <div class="card-body">
-                            
+                                <div class="dropdown float-end">
+                                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="btn_edit" data-id="${element.inventory_id}">Edit</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="btn_delete" data-id="${element.inventory_id}">Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
+
                             <div>
                             <h6 class="card-title"><b>VIN:</b>     ${element.VIN}</h5>
-                            <h6 class="card-text"><b>Model Name:</b>     ${element.model_name}</h6>
+                            <h6 class="card-text"><b>Model:</b>     ${element.model_name}</h6>
                             <h6 class="card-text"><b>Category:</b>     ${element.category}</h6>
                             <h6 class="card-title"><b>Price:</b>     ${element.price}</h5>
                             <h6 class="card-text"><b>Color:</b>     ${element.color}</h6>
-                            <h6 class="card-text"><b>Stock:</b>     ${element.stock}</h6>
-                            <h6 class="card-title"><b>Sales:</b>     ${element.sales}</h5>
-                            <h6 class="card-text"><b>Dealer:</b>     ${element.dealer}</h6>
+                            <h6 class="card-title"><b>Stock:</b>     ${element.stock}</h5>
+                            <h6 class="card-text"><b>Dealer:</b>     ${element.color}</h6>
+                            
                             </div>
-                            <h6 class="card-subtitle text-body-secondary mt-3">
+                            <h6 class="card-subtitle text-body-secondary mt-4">
                             <small><b>Date created:</b>     ${date}</small>
                             </h6>
                         </div>
                         </div>
+                        
+
                     </div>
                   </div>`;
     });
@@ -122,12 +149,13 @@ async function getData(url = "", keyword = "") {
                     </a>
                     </li>`;
     });
+    
     // Use the container to display the fetch data
     document.getElementById("get_pagination").innerHTML = pagination;
 
     // Assign  click event on Page Btns
     document.querySelectorAll("#btn_paginate").forEach((element) => {
-      element.addEventListener("click", pageAction);
+    element.addEventListener("click", pageAction);
     });
   } 
   // Get response if 400+ or 500+ status code
@@ -142,22 +170,24 @@ form_search.onsubmit = async (e) => {
   e.preventDefault();
 
   const formData = new FormData(form_search);
-  const modelKeyword = formData.get("model");
+  const brandKeyword = formData.get("brand");
 
   // Use the brandKeyword as the search parameter
-  getData("", modelKeyword);
+  getData("", brandKeyword);
 };
 
 //Store and Update Functionality Combined
 // Submit Form Functionality; This is for create and update 
-const form_inventory = document.getElementById("form_inventory");
+const form_inventories = document.getElementById("form_inventories");
 
-form_inventory.onsubmit = async (e) => {
+form_inventories.onsubmit = async (e) => {
+  console.log('Form submitted'); // Add this line
   e.preventDefault();
 
   // Disable button
-  document.querySelector("#form_inventory button[type = 'submit']").disabled = true;
-  document.querySelector("#form_inventory button[type = 'submit']").innerHTML = 
+  console.log('Disabling button'); // Add this line
+  document.querySelector("#form_inventories button[type = 'submit']").disabled = true;
+  document.querySelector("#form_inventories button[type = 'submit']").innerHTML = 
   `<div class="col-sm-12 d-flex justify-content-center align-items-center">
       <div class="spinner-border" role="status">
           <span class="visually-hidden">Loading...</span>
@@ -166,7 +196,9 @@ form_inventory.onsubmit = async (e) => {
   </div>`;
 
   //   Get values of form (input, textarea, select) put it as form-data
-  const formData = new FormData(form_inventory);
+  const formData = new FormData(form_inventories);
+
+  console.log('Form data:', formData); // Add this line
 
   // Check Key/value pairs of form data; Uncomment to debug
   // for (let [name, value] of formData) {
@@ -179,7 +211,7 @@ form_inventory.onsubmit = async (e) => {
   // Check if for_update_id is empty; If it is empty then it's create, else it's update
   if (for_update_id == "") {
 
-  // const id = document.querySelector('#form_inventory input[type="hidden"]').value;
+  // const id = document.querySelector('#form_inventories input[type="hidden"]').value;
   // const forUpdate = id.length > 0 ? true : false;
 
   //   fetch API property owner store endpoint
@@ -200,22 +232,22 @@ form_inventory.onsubmit = async (e) => {
   // For Update
   else {
     // Add Method Spoofing to cater Image Upload; Cause you are using FormData; Uncomment if necessary
-    // formData.append("_method", "PUT");
+    formData.append("_method", "PUT");
 
     //   fetch API property owner update endpoint
     response = await fetch(
       backendURL + "/api/inventory/" + for_update_id,
       {
-        method: "PUT", //Change to POST if with Image Upload
+        method: "POST", //Change to POST if with Image Upload
         headers: {
           Accept: "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
           "ngrok-skip-browser-warning": "69420", // Include ngrok bypass header directly
         },
         // Uncomment body below; If with Image Upload
-        // body: formData,
+        body: formData,
         // Comment body below; if with Image Upload
-        body: new URLSearchParams(formData),
+        // body: new URLSearchParams(formData),
       }
     );
   }
@@ -227,7 +259,7 @@ form_inventory.onsubmit = async (e) => {
   //   console.log(`${name} = ${value}`); 
   // }
 
-  // const id = document.querySelector('#form_inventory input[type="hidden"]').value;
+  // const id = document.querySelector('#form_inventories input[type="hidden"]').value;
   // const forUpdate = id.length > 0 ? true : false;
 
   // Get response if 200-299 status code
@@ -237,15 +269,18 @@ form_inventory.onsubmit = async (e) => {
     // console.log(json);
 
     // Reset Form
-    form_inventory.reset();
+    form_inventories.reset();
 
     // // Refresh the page
-    // location.reload(10); 
+    // location.reload(); 
 
     successNotification("Successfully" + (for_update_id == "" ? " created":" updated") + " inventory.", 10);
 
     // Close Modal
     document.getElementById("modal_close").click();
+
+    // reset to null the for_update_id
+    for_update_id = "";
 
     // Reload Page
     getData();
@@ -267,68 +302,77 @@ form_inventory.onsubmit = async (e) => {
   // Always reset for_update_id to empty string
   for_update_id = "";
 
-  document.querySelector("#form_inventory button[type='submit']").disabled = false;
-  document.querySelector("#form_inventory button[type='submit']").innerHTML = "Submit";
+  document.querySelector("#form_inventories button[type='submit']").disabled = false;
+  document.querySelector("#form_inventories button[type='submit']").innerHTML = "Submit";
 };
 
 // Delete Functionality
 const deleteAction = async (e) => {
-
   // Get Id from data Id attribute within the btn_delete anchor tag
   const id = e.target.getAttribute("data-id");
 
-  // Background red the card that you want to delete
-  document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor =
-    "red";
+  // Open the delete confirmation modal
+  const deleteConfirmationModal = new bootstrap.Modal(document.getElementById('deleteConfirmationModal'));
+  deleteConfirmationModal.show();
 
-    //   fetch API property owner delete endpoint
+  // Set up the event listener for the confirm delete button in the modal
+  const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+  confirmDeleteBtn.addEventListener('click', async () => {
+    // Background red the card that you want to delete
+    document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor = "red";
+
+    // Fetch API property owner delete endpoint
     const response = await fetch(
       backendURL + "/api/inventory/" + id, 
       {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-        "ngrok-skip-browser-warning": "69420", // Include ngrok bypass header directly
-      },
-    });
-
-    // Use JS confirm to ask for confirmation; You can use bootstrap modal instead of this
-    if (confirm("Are you sure you want to delete?")) {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "ngrok-skip-browser-warning": "69420", // Include ngrok bypass header directly
+        },
+      }
+    );
 
     // Get response if 200-299 status code
     if (response.ok) {
-
       // Uncomment for debugging purpose
       // const json = await response.json();
       // console.log(json);
 
-      successNotification("Successfully deleted property owner", 10);
+      successNotification("Successfully deleted inventory", 10);
 
       // Remove the card from the list 
       document.querySelector(`.card[data-id="${id}"]`).remove();
-
     } 
-    
     // Get response if 400+ or 500+
     else {
       errorNotification("Unable to delete!", 10);
 
       // Background white the card if unable to delete
-      document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor =
-      "white"; 
-    } 
-  }
+      document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor = "white"; 
+    }
+
+    // Close the delete confirmation modal
+    deleteConfirmationModal.hide();
+  });
 };
+
 
 // Update Functionality
 const editAction = async (e) => {
-    
+
     // Get Id from data Id attribute within the btn_delete anchor tag
     const id = e.target.getAttribute("data-id");
 
+    // Reset the for_update_id variable
+    for_update_id = "";
+
     // Show Functionality Function Call
-    showData(id);
+    await showData(id);
+
+    // Set the for_update_id variable with the correct ID
+    for_update_id = id;
 
     // Show Modal Form
     document.getElementById("modal_show").click();
@@ -341,56 +385,64 @@ let for_update_id = "";
 const showData = async (id) => {
 
   // Background Yellow the card you want to delete
-  document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor =
-    "yellow";
+  document.querySelector(`.card[data-id="${id}"]`).style.borderColor =
+    "blue";
 
-  // Fetch API property owner delete endpoint
-  const response = await fetch(
+  // Fetch API Dealer show endpoint
+const response = await fetch(
     backendURL + "/api/inventory/" + id,  {
     headers: {
-      Accept: "application/json",
-      Authorization: "Bearer " + localStorage.getItem("token"),
-      "ngrok-skip-browser-warning": "69420", // Include ngrok bypass header directly
+        Accept: "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+        "ngrok-skip-browser-warning": "69420", // Include ngrok bypass header directly
     },
-  });
+});
 
-  // Get response if 200-299 status code
-  if (response.ok) {
+// Get response if 200-299 status code
+if (response.ok) {
     const json = await response.json();
-    // console.log(json);
+    console.log(json);
 
-    // Store id to a variable; id will be utilize for update
+    // Store id to a variable; id will be utilized for update
     for_update_id = json.id;
 
-    // Display json response to Form tags; make sure to set id attribute on tags (input, textarea, select)    
-    document.getElementById("property_owner_name").value = json.property_owner_name;
-    document.getElementById("address").value = json.address;
-    document.getElementById("email").value = json.email;
+    // Display json response to Form tags; make sure to set id attribute on tags (input, textarea, select)
+    document.getElementById("VIN").value = json.VIN;
+    document.getElementById("model_name").value = json.firstname;
+    document.getElementById("category").value = json.category;
+    document.getElementById("price").value = json.price;
+    document.getElementById("color").value = json.color;
+    document.getElementById("stock").value = json.stock;
+    document.getElementById("dealer").value = json.dealer;
+    document.getElementById("dealer_id").value = json.dealer_id;
 
     // Change Button Description; You can also use textContent instead of innerHTML
-    document.querySelector("#form_inventory button[type='submit']").innerHTML = "Update Info";
-  } 
-  // Get response if 400+ or 500+
-  else {
+    document.querySelector("#form_inventories button[type='submit']").innerHTML = "Update Info";
+
+    // Handle file input separately if it's a file input
+    const imageInput = document.getElementById("image");
+
+    if (imageInput) {
+      // Check if the imagePreview element exists
+      const imagePreview = document.getElementById("imagePreview");
+      if (imagePreview) {
+        // You might want to display the image or handle it in a different way
+        // This is just an example, you might need to adapt this to your use case
+        imagePreview.src = backendURL + "/storage/" + json.image;
+      }
+    } else {
+      // Otherwise, set the value as usual
+      document.getElementById("image").value = json.image;
+    }
+} 
+
+// Get response if 400+ or 500+
+else {
     errorNotification("Unable to show!", 10);
 
     // Background white the card if unable to show
-    document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor =
-      "white";
-  }
-};
-
-// Page Functionality
-const pageAction = async (e) => {
-  // Get url from data-url attribute within the btn_pagination anchor tag
-  const url = e.target.getAttribute("data-url");
-  
-  // Get search keyword from the form
-  const formData = new FormData(form_search);
-  const modelKeyword = formData.get("model");
-
-  // Refresh card list with the correct parameters
-  getData(url, modelKeyword);
+    document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor = "white";
+}
 }
 
 export {getData};
