@@ -67,39 +67,42 @@ async function getData(url = "", keyword = "") {
     json.data.forEach((element) => {
       const date = new Date(element.created_at).toLocaleString();
 
-      container += `<div class="col-sm-12">
-                    <div class="card w-100 mt-3" data-id="${element.VIN}">
-                    
-                    <div class="row">
-                        <div class="col-sm-4 d-flex align-items-center">
-                            <img class="rounded" src="${backendURL}/storage/${element.image}" width="100%" height="270px">
-                        </div>
+      container += `<div class="col-sm-6">
+      <div class="card w-100 mt-3" data-id="${element.VIN}">
+      
+      <div class="row">
+          <div class="col-sm-6 d-flex align-items-center">
+              <img class="rounded" src="${backendURL}/storage/${element.image}" width="100%" height="270px">
+          </div>
 
-                        <div class="col-sm-8">
-                        <div class="card-body">
-       
-                            <div>
-                            <h6 class="card-title"><b>VIN:</b>     ${element.VIN}</h5>
-                            
-                            <h6 class="card-text"><b>Price:</b>     ${element.price}</h6>
-                            <h6 class="card-text"><b>Model:</b>     ${element.models.model_name}</h6>
-                            <h6 class="card-title"><b>Category:</b>     ${element.models.category}</h5>
-                            <h6 class="card-title"><b>Transmission:</b>     ${element.transmission}</h5>
-                            <h6 class="card-text"><b>Color:</b>     ${element.color}</h6>
-                            <h6 class="card-text"><b>Brand:</b>     ${element.models.brand.brand_name}</h6>
-                            </div>
-                            <h6 class="card-subtitle text-body-secondary mt-4">
-                            <small><b>Date created:</b>     ${date}</small>
-                            </h6>
-                        </div>
-                        </div>
-                        
-                        <div class="col-sm-8 text-center ps-5 ms-5">
-                            <a class="col-sm-2 btn btn-danger mb-2" href="#" id="btn_edit" data-id="${element.VIN}"><i class="fa fa-shopping-bag"></i> Inquire</a>
-                        </div>
+          <div class="col-sm-6">
+              <div class="card-body">
 
-                    </div>
-                  </div>`;
+                  <div>
+                      <h6 class="card-title"><b>VIN:</b>     ${element.VIN}</h6>
+                      
+                      <h6 class="card-text"><b>Price:</b>     ${element.price}</h6>
+                      <h6 class="card-text"><b>Model:</b>     ${element.models.model_name}</h6>
+                      <h6 class="card-title"><b>Category:</b>     ${element.models.category}</h6>
+                      <h6 class="card-title"><b>Transmission:</b>     ${element.transmission}</h6>
+                      <h6 class="card-text"><b>Color:</b>     ${element.color}</h6>
+                      <h6 class="card-text"><b>Brand:</b>     ${element.models.brand.brand_name}</h6>
+                  </div>
+                  <h6 class="card-subtitle text-body-secondary mt-4">
+                      <!--<small><b>Date created:</b>     ${date}</small>-->
+                  </h6>
+              </div>
+          </div>
+          
+          <div class="col-sm-12 text-center my-2">
+              <a class="col-sm-2 btn btn-danger" href="#" id="btn_edit" data-id="${element.VIN}">
+                  <i class="fa fa-shopping-bag"></i> Inquire
+              </a>
+          </div>
+
+      </div>
+    </div>
+  </div>`;
     });
 
     // Use the container to display the fetch data

@@ -80,45 +80,39 @@ async function getData(url = "", keyword = "") {
     json.data.forEach((element) => {
       const date = new Date(element.created_at).toLocaleString();
 
-      container += `<div class="col-sm-12">
-                    <div class="card w-100 mt-3" data-id="${element.VIN}">
-                    
-                    <div class="row">
-                        <div class="col-sm-4 d-flex align-items-center">
-                            <img class="rounded" src="${backendURL}/storage/${element.image}" width="100%" height="270px">
-                        </div>
-
-                        <div class="col-sm-8">
-                        <div class="card-body">
-                                <div class="dropdown float-end">
-                                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#" id="btn_edit" data-id="${element.VIN}">Edit</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#" id="btn_delete" data-id="${element.VIN}">Delete</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div>
-                            <h6 class="card-title"><b>VIN:</b>     ${element.VIN}</h5>
-                            
-                            <h6 class="card-text"><b>Price:</b>     ${element.price}</h6>
-                            <h6 class="card-text"><b>Transmission:</b>     ${element.transmission}</h6>
-                            <h6 class="card-title"><b>Color:</b>     ${element.color}</h5>
-                            
-                            </div>
-                            <h6 class="card-subtitle text-body-secondary mt-4">
-                            <small><b>Date created:</b>     ${date}</small>
-                            </h6>
-                        </div>
-                        </div>
-                        
-
-                    </div>
-                  </div>`;
+      container += `<div class="col-sm-6">
+      <div class="card w-100 mt-3" data-id="${element.VIN}">
+          <div class="row">
+              <div class="col-sm-5 d-flex align-items-center">
+                  <img class="rounded" src="${backendURL}/storage/${element.image}" width="100%" height="270px">
+              </div>
+              <div class="col-sm-7">
+                  <div class="card-body">
+                      <div class="dropdown float-end">
+                          <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a class="dropdown-item" href="#" id="btn_edit" data-id="${element.VIN}">Edit</a>
+                              </li>
+                              <li>
+                                  <a class="dropdown-item" href="#" id="btn_delete" data-id="${element.VIN}">Delete</a>
+                              </li>
+                          </ul>
+                      </div>
+                      <div>
+                          <h6 class="card-title"><b>VIN:</b> ${element.VIN}</h6>
+                          <h6 class="card-text"><b>Price:</b> ${element.price}</h6>
+                          <h6 class="card-text"><b>Transmission:</b> ${element.transmission}</h6>
+                          <h6 class="card-title"><b>Color:</b> ${element.color}</h6>
+                      </div>
+                      <h6 class="card-subtitle text-body-secondary mt-4">
+                          <small><b>Date created:</b> ${date}</small>
+                      </h6>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>`;
     });
 
     // Use the container to display the fetch data

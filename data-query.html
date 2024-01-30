@@ -6,14 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Supplier</title>
+        <title>Data Query</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/dashboard.css" rel="stylesheet" />
         <link rel="stylesheet" href="css/custom.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="js/utils/scripts.js" defer></script>
+        <script src="js/dashboard/query_sales.js"></script>
         <!-- <script type="module" src="js/utils/utils.js"></script> -->
-        <script type="module" src="js/dashboard/supplier.js"></script>
+        <script type="module" src="js/dashboard/data-query.js"></script>
         <script type="module" src="js/dashboard/dashboard.js"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -23,18 +24,18 @@
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search Form-->
-            <div class="col-sm-2"></div>
+            <!-- <div class="col-sm-2"></div>
             <form id="form_search" class="d-flex align-items-center justify-content-center">
                 <div class="col-sm-8">
                     <div class="input-group">
                         <span class="input-group-text text-white rounded-circle"><i class="fas fa-search"></i></span>
-                        <input class="form-control rounded-pill" type="text" name="brand" id="brand" placeholder="Search a Supplier">
+                        <input class="form-control rounded-pill" type="text" name="brand" id="brand" placeholder="Search a VIN">
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <button class="btn btn-primary mx-2 rounded-pill" type="submit">Search</button>
                 </div>
-            </form>
+            </form> -->
                         
 
             <!-- End of Navbar Search Form-->
@@ -107,12 +108,18 @@
             </div>
             <div id="layoutSidenav_content">
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Suppliers</h1>
+                    <h1 class="mt-4">Data Query</h1>
                     <ol class="breadcrumb mb-4">
                         <!-- <li class="breadcrumb-item"><a href="dashboard.html">Profile</a></li> -->
                         <li class="breadcrumb-item"><a href="user.html">Users</a></li>
                         <li class="breadcrumb-item"><a href="admin-vehicle.html">Vehicles</a></li>
-                        <li class="breadcrumb-item active">Suppliers</li>
+                        <li class="breadcrumb-item"><a href="supplier.html">Suppliers</a></li>
+                        <li class="breadcrumb-item"><a href="sale.html">Sales</a></li>
+                        <li class="breadcrumb-item"><a href="model.html">Models</a></li>
+                        <li class="breadcrumb-item"><a href="admin-inventory.html">Inventories</a></li>
+                        <li class="breadcrumb-item"><a href="admin-dealer.html">Dealers</a></li>
+                        <li class="breadcrumb-item"><a href="customer.html">Customers</a></li>
+                        <li class="breadcrumb-item active">Data Query</li>
                     </ol>
 
                     <!-- Four Images in One Row -->
@@ -137,103 +144,70 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Supplier Form</h1>
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Sales Form</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <!-- Input Form -->
-                                <form id="form_suppliers">
+                                <form id="form_sales">
                                     <!-- Modal Body -->
                                     <div class="modal-body">
                                         <input type="hidden" name="user_id" id="user_id"/>
                                         <!-- Dealer Field -->
                                         <div class="row mb-2">
                                             <div class="col-sm-3 mt-1">
-                                                <label for="supplier_name">Supplier:</label>
+                                                <label for="sale_date">Sale Date:</label>
                                             </div>
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="supplier_name" id="supplier_name" required>
+                                            <input class="form-control" type="date" name="sale_date" id="sale_date" required>
                                             </div>
                                         </div>
                                         <!-- Area Field -->
                                         <div class="row mb-2">
                                             <div class="col-sm-3 mt-1">
-                                                <label for="part">Part:</label>
+                                                <label for="income">Income:</label>
                                             </div>
                                             <div class="col-sm-9">
-                                            <input class="form-control" type="text" name="part" id="part" required>
+                                            <input class="form-control" type="text" name="income" id="income" required>
+                                            </div>
+                                        </div>
+                                        <!-- Area Field -->
+                                        <div class="row mb-2">
+                                            <div class="col-sm-3 mt-1">
+                                                <label for="gender">Gender:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="text" name="gender" id="gender" required>
                                             </div>
                                         </div>
                                         <div class="row mb-2">
                                             <div class="col-sm-3 mt-1">
-                                                <label for="model_id">Model:</label>
+                                                <label for="customer_id">Customer:</label>
                                             </div>
                                             <div class="col-sm-9">
-                                                <select class="form-control" name="model_id" id="model_id" required>
-                                                    <option disabled selected >Choose model...</option>
-                                                    <option value="1">Toyota Wigo / Convertibles</option>
-                                                    <option value="2">Toyota Vios / Convertibles</option>
-                                                    <option value="3">Toyota Camry / Convertibles</option>
-                                                    <option value="4">Toyota Corolla Altis / Convertibles</option>
-                                                    <option value="5">Toyota Yaris Cross / Crossovers & SUVs</option>
-                                                    <option value="6">Toyota Raize / Crossovers & SUVs</option>
-                                                    <option value="7">Toyota Veloz / Crossovers & SUVs</option>
-                                                    <option value="8">Toyota RAV4 / Crossovers & SUVs</option>
-                                                    <option value="9">Toyota Rush / Crossovers & SUVs</option>
-                                                    <option value="10">Toyota Fortuner / Crossovers & SUVs</option>
-                                                    <option value="11">Toyota Corolla Cross / Crossovers & SUVs</option>
-                                                    <option value="12">Toyota Land Cruiser / Crossovers & SUVs</option>
-                                                    <option value="13">Toyota Land Cruiser Prado / Crossovers & SUVs</option>
-                                                    <option value="14">Toyota Fortuner GR-S / Crossovers & SUVs</option>
-                                                    <option value="15">Toyota Zenix / MPVs</option>
-                                                    <option value="16">Toyota Avanza / MPVs</option>
-                                                    <option value="17">Toyota Innova / MPVs</option>
-                                                    <option value="18">Toyota Alphard / Vans & Pick-ups</option>
-                                                    <option value="19">Toyota Lite Ace / Vans & Pick-ups</option>
-                                                    <option value="20">Toyota Hiace / Vans & Pick-ups</option>
-                                                    <option value="21">Toyota Commuter Deluxe / Vans & Pick-ups</option>
-                                                    <option value="22">Toyota GL Grandia / Vans & Pick-ups</option>
-                                                    <option value="23">Toyota GL Grandia Tourer / Vans & Pick-ups</option>
-                                                    <option value="24">Toyota Super Grandia / Vans & Pick-ups</option>
-                                                    <option value="25">Toyota Coaster / Vans & Pick-ups</option>
-                                                    <option value="26">Toyota Hilux / Vans & Pick-ups</option>
-                                                    <option value="28">Toyota Alphard / Electrified</option>
-                                                    <option value="29">Toyota Yaris Cross / Electrified</option>
-                                                    <option value="30">Toyota Zenix / Electrified</option>
-                                                    <option value="31">Toyota RAV4 / Electrified</option>
-                                                    <option value="32">Toyota Camry / Electrified</option>
-                                                    <option value="33">Toyota Corolla Altis / Electrified</option>
-                                                    <option value="35">Toyota GR 86 / Gazoo Racing</option>
-                                                    <option value="36">Toyota GR Yaris / Gazoo Racing</option>
-                                                    <option value="37">Toyota GR Supra / Gazoo Racing</option>
-                                                    <option value="38">Toyota Corolla Altis / Gazoo Racing</option>
-                                                    <option value="39">Toyota Rush / Gazoo Racing</option>
-                                                    <option value="40">Toyota Corolla Cross / Gazoo Racing</option>
-                                                    <option value="41">Toyota Fortuner GR-S / Gazoo Racing</option>
-                                                    <option value="42">Toyota Hilux / Gazoo Racing</option>
-                                                    <option value="44">Daihatsu Move / Kei</option>
-                                                    <option value="45">Daihatsu Tanto / Kei</option>
-                                                    <option value="46">Daihatsu Wake / Kei</option>
-                                                    <option value="47">Daihatsu Sirion / Compact</option>
-                                                    <option value="48">Daihatsu Boon / Compact</option>
-                                                    <option value="49">Daihatsu Thor / Compact</option>
-                                                    <option value="50">Daihatsu Rocky / Mini SUVs</option>
-                                                    <option value="51">Daihatsu Terios / Mini SUVs</option>
-                                                    <option value="53">Hino 300 Series / Light Trucks</option>
-                                                    <option value="54">Hino 500 Series / Light Trucks</option>
-                                                    <option value="56">Hino 700 Series / Medium Trucks</option>
-                                                    <option value="58">Hino Profia / Medium Trucks</option>
-                                                    <option value="60">Hino Liesse / Buses</option>
-                                                    <option value="61">Hino Alpha / Buses</option>
-                                                    <option value="62">Lexus LS / Sedans</option>
-                                                    <option value="64">Lexus IS / Sedans</option>
-                                                    <option value="65">Lexus RX / SUVs</option>
-                                                    <option value="66">Lexus NX / SUVs</option>
-                                                    <option value="68">Lexus LC / Coupes</option>
-                                                    <option value="69">Lexus RC F / Coupes</option>
+                                                <select class="form-control" name="customer_id" id="customer_id" required>
+                                                    <option disabled selected >Choose customer...</option>
+                                                    <option value="1">Mary Ann Cagmat</option>
+                                                    <option value="2">Tyronne Laluma</option>
+                                                    <option value="3">James Fuentes</option>
+                                                    <option value="4">Taylor Swifit</option>
+                                                    <option value="5">Janice Stewart</option>
+                                                    <option value="6">Kristine Labador</option>
+                                                    <option value="7">Cristine Luperte</option>
+                                                    <option value="8">Kizzle Castillo</option>
+                                                    <option value="9">Adrian Paler</option>
+                                                    <option value="10">Desiree Abecia</option>
                                                 </select>
                                             </div>
                                         </div>
-
+                                        <!-- Area Field -->
+                                        <div class="row mb-2">
+                                            <div class="col-sm-3 mt-1">
+                                                <label for="VIN">VIN:</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="text" name="VIN" id="VIN" required>
+                                            </div>
+                                        </div>
 
                                     </div>
                                     <!-- End of Modal Body -->
@@ -261,7 +235,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                Are you sure you want to delete this supplier?
+                                Are you sure you want to delete this sale?
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -274,8 +248,8 @@
 
                         <!-- Button trigger modal -->
                         <div class="col-sm-2 ms-auto">
-                            <button id="modal_show" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form_modal">
-                                Add Supplier
+                            <button id="modal_show" type="button" class="btn btn-white" data-bs-toggle="modal" data-bs-target="#form_modal">
+                                
                             </button>
                         </div>
 
@@ -309,6 +283,7 @@
                         </nav>
                     </div>
                 </div>
+
                 <!-- End of Content -->
                 
                 <footer class="py-4 bg-light mt-auto">
@@ -326,6 +301,7 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script> -->
     </body>

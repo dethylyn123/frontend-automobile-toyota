@@ -46,3 +46,36 @@ color: white; /* Optional: Set the text color */
     padding: 10px 20px; /* Adjust padding for the button */
 }
 
+th {
+    background-color: teal !important;
+    color: white;
+}
+
+tr:hover {
+    background-color: rgb(200, 195, 195);
+}
+
+/* cards inside dashboard */
+.card {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.card:hover {
+    box-shadow: 0 0 55px rgba(0, 0, 0, 0.4);
+}
+
+.img-rounded {
+    overflow: hidden;
+    transition: 0.5s;
+    border-radius: 10px 10px 0 0;
+}
+
+.img-rounded img {
+    transition: 0.5s;
+}
+
+.img-rounded img:hover {
+    transform: scale(1.3);
+}

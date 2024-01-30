@@ -41,3 +41,23 @@ window.addEventListener('DOMContentLoaded', event => {
             link.classList.add('active');
         }
     });
+
+    // function runQuery() {
+    //     var query = document.getElementById('query').value;
+    
+    //     fetch('query_runner.php', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/x-www-form-urlencoded',
+    //         },
+    //         body: 'query=' + encodeURIComponent(query),
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         document.getElementById('result').innerHTML = JSON.stringify(data, null, 2);
+    //     })
+    //     .catch(error => {
+    //         console.error('Error executing the query:', error);
+    //         alert('Error executing the query.');
+    //     });
+    // }

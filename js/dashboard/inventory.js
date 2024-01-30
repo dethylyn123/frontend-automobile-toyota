@@ -66,34 +66,31 @@ async function getData(url = "", keyword = "") {
     json.data.forEach((element) => {
       const date = new Date(element.created_at).toLocaleString();
 
-      container += `<div class="col-sm-12">
-                    <div class="card w-100 mt-3" data-id="${element.inventory_id}">
-                    
-                    <div class="row">
-                        <div class="col-sm-4 d-flex align-items-center">
-                            <img class="rounded" src="${backendURL}/storage/${element.image}" width="100%" height="270px">
-                        </div>
-
-                        <div class="col-sm-8">
-                        <div class="card-body">
-                            
-                            <div>
-                            <h6 class="card-title"><b>VIN:</b>     ${element.VIN}</h5>
-                            <h6 class="card-text"><b>Model Name:</b>     ${element.model_name}</h6>
-                            <h6 class="card-text"><b>Category:</b>     ${element.category}</h6>
-                            <h6 class="card-title"><b>Price:</b>     ${element.price}</h5>
-                            <h6 class="card-text"><b>Color:</b>     ${element.color}</h6>
-                            <h6 class="card-text"><b>Stock:</b>     ${element.stock}</h6>
-                            <h6 class="card-title"><b>Sales:</b>     ${element.sales}</h5>
-                            <h6 class="card-text"><b>Dealer:</b>     ${element.dealer}</h6>
-                            </div>
-                            <h6 class="card-subtitle text-body-secondary mt-3">
-                            <small><b>Date created:</b>     ${date}</small>
-                            </h6>
-                        </div>
-                        </div>
-                    </div>
-                  </div>`;
+      container += `<div class="col-sm-6">
+      <div class="card w-100 mt-3" data-id="${element.inventory_id}">
+          <div class="row">
+              <div class="col-sm-5 d-flex align-items-center">
+                  <img class="rounded" src="${backendURL}/storage/${element.image}" width="100%" height="270px">
+              </div>
+              <div class="col-sm-7">
+                  <div class="card-body">
+                      <div>
+                          <h6 class="card-title"><b>VIN:</b> ${element.VIN}</h6>
+                          <h6 class="card-text"><b>Model Name:</b> ${element.model_name}</h6>
+                          <h6 class="card-text"><b>Category:</b> ${element.category}</h6>
+                          <h6 class="card-title"><b>Price:</b> ${element.price}</h6>
+                          <h6 class="card-text"><b>Color:</b> ${element.color}</h6>
+                          <h6 class="card-text"><b>Stock:</b> ${element.stock}</h6>
+                          <h6 class="card-text"><b>Dealer:</b> ${element.dealer}</h6>
+                      </div>
+                      <h6 class="card-subtitle text-body-secondary mt-3">
+                          <!--<small><b>Date created:</b> ${date}</small>-->
+                      </h6>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>`;
     });
 
     // Use the container to display the fetch data

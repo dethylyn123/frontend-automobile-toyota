@@ -77,48 +77,50 @@ async function getData(url = "", keyword = "") {
     // Get Each Json Elements and merge with HTML element and put it into a container 
     let container = "";
     // Now caters pagination; You can use "json.data" if using pagination or "json" only if no pagination
+    container += `<table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Gender</th>
+          <th>Address</th>
+          <th>Phone</th>
+          <th>Annual Income</th>
+          <th>VIN</th>
+          <th>Date created</th>
+          <th colspan="2">Action</th>
+        </tr>
+      </thead>
+      <tbody>`;
+    // Now caters pagination; You can use "json.data" if using pagination or "json" only if no pagination
     json.data.forEach((element) => {
       const date = new Date(element.created_at).toLocaleString();
 
-      container += `<div class="col-sm-12">
-                    <div class="card w-100 mt-3" data-id="${element.customer_id}">
-                    
-                    <div class="row">
-
-
-                        <div class="col-sm-12">
-                        <div class="card-body">
-                                <div class="dropdown float-end">
-                                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#" id="btn_edit" data-id="${element.customer_id}">Edit</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#" id="btn_delete" data-id="${element.customer_id}">Delete</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div>
-                            <h6 class="card-title"><b>Customer:</b>     ${element.customer_name}</h5>
-                            <h6 class="card-text"><b>Gender:</b>     ${element.gender}</h6>
-                            <h6 class="card-title"><b>Address:</b>     ${element.address}</h5>
-                            <h6 class="card-text"><b>Phone:</b>     ${element.phone}</h6>
-                            <h6 class="card-title"><b>Annual Income:</b>     ${element.annual_income}</h5>
-                            <h6 class="card-title"><b>VIN:</b>     ${element.VIN}</h5>
-                            
-                            </div>
-                            <h6 class="card-subtitle text-body-secondary mt-4">
-                            <small><b>Date created:</b>     ${date}</small>
-                            </h6>
-                        </div>
-                        </div>
-                        
-
-                    </div>
-                  </div>`;
+      container += `
+      <tr data-id="${element.customer_id}">
+      <td>${element.customer_name}</td>
+      <td>${element.gender}</td>
+      <td>${element.address}</td>
+      <td>${element.phone}</td>
+      <td>${element.annual_income}</td>
+      <td>${element.VIN}</td>
+      <td>${date}</td>
+      <td>
+          <div class="dropdown text-center">
+              <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+              <ul class="dropdown-menu">
+                  <li>
+                      <a class="dropdown-item" href="#" id="btn_edit" data-id="${element.customer_id}">Edit</a>
+                  </li>
+                  <li>
+                      <a class="dropdown-item" href="#" id="btn_delete" data-id="${element.customer_id}">Delete</a>
+                  </li>
+              </ul>
+          </div>
+      </td>
+  </tr>`;
     });
+
+    container += `</tbody></table>`;
 
     // Use the container to display the fetch data
     document.getElementById("get_data").innerHTML = container;
@@ -316,7 +318,7 @@ const deleteAction = async (e) => {
   const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
   confirmDeleteBtn.addEventListener('click', async () => {
     // Background red the card that you want to delete
-    document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor = "red";
+    document.querySelector(`tr[data-id="${id}"]`).style.backgroundColor = "red";
 
     // Fetch API property owner delete endpoint
     const response = await fetch(
@@ -340,14 +342,14 @@ const deleteAction = async (e) => {
       successNotification("Successfully deleted customer", 10);
 
       // Remove the card from the list 
-      document.querySelector(`.card[data-id="${id}"]`).remove();
+      document.querySelector(`tr[data-id="${id}"]`).remove();
     } 
     // Get response if 400+ or 500+
     else {
       errorNotification("Unable to delete!", 10);
 
       // Background white the card if unable to delete
-      document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor = "white"; 
+      document.querySelector(`tr[data-id="${id}"]`).style.backgroundColor = "white"; 
     }
 
     // Close the delete confirmation modal
@@ -382,8 +384,8 @@ let for_update_id = "";
 const showData = async (id) => {
 
   // Background Yellow the card you want to delete
-  document.querySelector(`.card[data-id="${id}"]`).style.borderColor =
-    "blue";
+  document.querySelector(`tr[data-id="${id}"]`).style.backgroundColor =
+    "lightBlue";
 
   // Fetch API Dealer show endpoint
 const response = await fetch(
@@ -422,7 +424,7 @@ else {
     errorNotification("Unable to show!", 10);
 
     // Background white the card if unable to show
-    document.querySelector(`.card[data-id="${id}"]`).style.backgroundColor = "white";
+    document.querySelector(`tr[data-id="${id}"]`).style.backgroundColor = "white";
 }
 }
 

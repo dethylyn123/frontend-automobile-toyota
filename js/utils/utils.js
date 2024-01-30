@@ -107,6 +107,10 @@ function showNavAdminPages() {
         <div class="sb-nav-link-icon"><i class="fa-solid fa-person"></i></div>
         Customers 
     </a>
+    <a class="nav-link" href="data-query.html">
+        <div class="sb-nav-link-icon"><i class="fa-solid fa-database"></i></div>
+        Data Query 
+    </a>
     `;
 
     // Highlight the active page
