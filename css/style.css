@@ -251,7 +251,7 @@
 
 
 /*** Team ***/
-.team-item .team-overlay {
+/* .team-item .team-overlay {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -272,7 +272,48 @@
 .team-item .team-overlay .btn:hover {
     color: #FFFFFF;
     background: var(--secondary)
+} */
+
+/*** Latest News Start ***/
+.latest-news .latest-news-carousel.owl-carousel{
+    position: relative;
+    z-index: 1;
 }
+
+.latest-news .latest-news-carousel.owl-carousel .owl-nav .owl-prev {
+    position: absolute;
+    top: -95px;
+    right: 70px;
+    font-size: 20px;
+    padding: 2px 20px;
+    transition: 0.5s;
+    margin-right: 10px;
+    border: 1px solid var(--bs-primary);
+    color: var(--bs-dark);
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.latest-news .latest-news-carousel.owl-carousel .owl-nav .owl-next {
+    position: absolute;
+    top: -95px;
+    right: 0;
+    font-size: 20px;
+    margin-left: 10px;
+    padding: 2px 20px;
+    transition: 0.5s;
+    border: 1px solid var(--bs-primary);
+    color: var(--bs-dark);
+    border-radius: 20px;
+}
+
+.latest-news .latest-news-carousel.owl-carousel .owl-nav .owl-prev:hover,
+.latest-news .latest-news-carousel.owl-carousel .owl-nav .owl-next:hover {
+    background: var(--bs-primary);
+    color: var(--bs-white);
+    border-radius: 10px;
+}
+/*** Latest News End ***/
 
 
 /*** Testimonial ***/
@@ -381,3 +422,265 @@
     padding-right: 0;
     border-right: none;
 }
+
+/* My Added CSS*/
+
+/* Top Deals */
+.gallery_box {
+    background-color: #f7f4f4;
+    /* box-shadow: 0px 0px 6px 6px #b3b1b1; */
+}
+.gallery_box:hover {
+    box-shadow: 0px 0px 0px 0px;
+}
+
+/*** Topbar Start ***/
+.sticky-top {
+    transition: 0.5s;
+    background: var(--bs-white);
+}
+
+.topbar {
+    padding: 10px 0;
+}
+
+.topbar .top-info {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+.topbar .top-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 1400px) {
+    .sticky-top .top-link {
+        display: none;
+    }
+    
+}
+
+.topbar .top-link a {
+    font-size: medium;
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+}
+
+.topbar .top-link a small:hover {
+    color: var(--bs-secondary) !important;
+    transition: 0.5s;
+}
+
+.topbar .top-link a small:hover i {
+    color: var(--bs-primary) !important;
+}
+
+/* announcements */
+#note {
+    position:relative;
+    animation: noteAnimate 10s infinite;
+    animation-timing-function: ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+@keyframes noteAnimate {
+    from {left: -735px;}
+    to {left: 735px;}
+}
+
+.link-hover {
+    transition: 0.5s;
+}
+
+.link-hover:hover {
+    color: var(--bs-primary) !important;
+}
+
+/* Feature Highlights */
+.image-box {
+    position: relative;
+    /* margin: auto; */
+    overflow: hidden;
+    /* width: 540px; */
+    z-index: 1;
+}
+.image-box img {
+    max-width: 100%;
+    transition: all 0.6s;
+    /* display: block; */
+    /* width: 100%;
+    height: auto; */
+    transform: scale(1);
+}
+
+.image-box:hover img {
+    transform: scale(1.1);
+}
+
+.bg-gray {
+    background-color: #f2f2f3;
+}
+
+.bg-image {
+    position: relative;
+    /* background-image: url(../img/bg-image.jpeg); */
+    /* background-color: #f2f2f3; */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(223, 221, 221, 0.5); /* Adjust the alpha value for darkness */
+}
+
+/* Features Services */
+
+.move-right:hover {
+    transform: translateX(20px); /* Adjust the value to control the amount of movement */
+    transition: transform 0.3s ease; /* Optional: Add a smooth transition effect */
+}
+
+/* Example styling for the elements to move */
+.move-right {
+    /* display: inline-block; Adjust according to your layout */
+    /* margin: 10px; Adjust according to your layout */
+    transition: transform 0.3s ease; /* Optional: Add a smooth transition effect */
+}
+
+/* Features Stories */
+
+/* Container styling */
+.image-container {
+    position: relative;
+    padding: 0px;
+    /* width: 300px; /*Adjust the width as needed*/
+    /*height: 200px; Adjust the height as needed */
+  }
+
+  /* Image styling */
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Date styling */
+.image-date {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    z-index: 2;
+}
+
+/* Title styling */
+.image-title {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Text styling */
+.image-text {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    color: white;
+    font-size: 14px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    max-width: 90%; /* Optional: Adjust the maximum width of the text */
+}
+
+hr {
+    height: 2px !important;
+    color: gray;
+}
+
+.image-date1 {
+    position: absolute;
+    top: 4%;
+    left: 8%;
+    /* color: white; */
+    font-size: 12px;
+    font-weight: bold;
+    /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); */
+    /* z-index: 2; */
+}
+
+.rela {
+    position: relative;
+}
+
+/*** Fruits Start ***/
+.fruite .tab-class .nav-item a.active {
+    background: var(--bs-secondary) !important;
+}
+
+.fruite .tab-class .nav-item a.active span {
+    color: var(--bs-white) !important; 
+}
+
+.fruite .fruite-categorie .fruite-name {
+    line-height: 40px;
+}
+
+.fruite .fruite-categorie .fruite-name a {
+    transition: 0.5s;
+}
+
+.fruite .fruite-categorie .fruite-name a:hover {
+    color: var(--bs-secondary);
+}
+
+.fruite .fruite-item {
+    height: 100%;
+    transition: 0.5s;
+}
+.fruite .fruite-item:hover {
+    box-shadow: 0 0 55px rgba(0, 0, 0, 0.4);
+}
+
+.fruite .fruite-item .fruite-img {
+    overflow: hidden;
+    transition: 0.5s;
+    border-radius: 10px 10px 0 0;
+}
+
+.fruite .fruite-item .fruite-img img {
+    transition: 0.5s;
+}
+
+.fruite .fruite-item .fruite-img img:hover {
+    transform: scale(1.3);
+}
+/*** Fruits End ***/
+
+.common-image {
+    width: 80px; 
+    height: 170px; 
+  }
+

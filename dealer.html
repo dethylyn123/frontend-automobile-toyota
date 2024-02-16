@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dealer Locator</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="css/dashboard.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/custom.css">
+        <!-- Leaflet Start -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+        <!-- Leaflet End -->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="js/utils/scripts.js" defer></script>
+        <!-- <script type="module" src="js/utils/utils.js"></script> -->
+        <script type="module" src="js/dashboard/dealer.js"></script>
+        <script type="module" src="js/dashboard/dashboard.js"></script>
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="vehicle.html">Peak<span class="text-danger">Move</span></a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+
+            <!-- Navbar Search Form-->
+            <form id="form_search" class="d-flex align-items-center ms-auto me-5">
+                <div class="oval-container bg-white">
+                    <select class="form-select oval-input" id="dealer_name" name="dealer_name" style="background-color: #fbf9f9 !important; color: rgb(0, 0, 0) !important; font-size: 14px; padding: 8px;">
+                        <option class="text-muted" selected disabled>Select Dealer</option>
+                        <option value="PeakMove Cubao">(Metro Manila)PeakMove Cubao</option>
+                        <option value="PeakMove Pasig">(Metro Manila)PeakMove Pasig</option>
+                        <option value="PeakMove Valenzuela">(Metro Manila)PeakMove Valenzuela</option>
+                        <option value="PeakMove Albay">(Luzon)PeakMove Albay</option>
+                        <option value="PeakMove Bacoor, Cavite, INC.">(Luzon)PeakMove Bacoor, Cavite, INC.</option>
+                        <option value="PeakMove Cebu City, INC.">(Visayas)PeakMove Cebu City, INC.</option>
+                        <option value="PeakMove Calbayog, Samar">(Visayas)PeakMove Calbayog, Samar</option>
+                        <option value="PeakMove Butuan City">(Mindanao)PeakMove Butuan City</option>
+                        <option value="PeakMove Cagayan de Oro, INC.">(Mindanao)PeakMove Cagayan de Oro, INC.</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <button class="btn btn-primary mx-2 oval-button" style="font-size: 14px; padding-top: 8px;" type="submit">Find Dealer</button>
+                <!-- Button trigger modal -->
+                <button id="modal_show" type="button" class="btn btn-white" data-bs-toggle="modal" data-bs-target="#form_modal"></button>
+            </form>
+            <!-- End of Navbar Search Form -->
+            
+            <!-- Navbar-->
+            <div>
+                <img class="rounded-circle me-2" height="35px" width="50px" id="user_logged_image" src="" alt="User Image">
+            </div>
+            <div>
+                <span class="mt-3 text-white" id="user_logged_name"></span><br>
+                <small class="m-0 p-0 text-secondary">Signed in</small>
+            </div>
+
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="na /vbarDropdown">
+                        <li><a class="dropdown-item" href="#" id="btn_logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <!-- <div class="sb-sidenav-menu-heading">Core</div>
+                            <a class="nav-link" href="dashboard.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Profile
+                            </a> -->
+                            <div class="sb-sidenav-menu-heading">Pages</div>
+                            <!-- <a class="nav-link" href="charts.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Charts
+                            </a> -->
+                            <a class="nav-link" href="vehicle.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-car"></i></div>
+                                Vehicles
+                            </a>
+                            <a class="nav-link" href="dealer.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-search-location"></i></div>
+                                Dealer Locator
+                            </a>
+                            <a class="nav-link" href="inventory.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
+                                Dealer Inventory
+                            </a>
+                            <!-- Dealer Pages -->
+                            <div id="nav_dealer_pages"></div>
+                            <!-- End of Dealer Pages -->
+
+                            <!-- Admin Pages -->
+                            <div id="nav_admin_pages"></div>
+                            <!-- End of Admin Pages -->
+                        </div>
+                    </div>
+                    <!-- <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        <span id="user_logged_name"></span>
+                    </div> -->
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Dealer Locator</h1>
+                    <ol class="breadcrumb mb-4">
+                        <!-- <li class="breadcrumb-item"><a href="dashboard.html">Profile</a></li> -->
+                        <li class="breadcrumb-item"><a href="vehicle.html">Vehicles</a></li>
+                        <li class="breadcrumb-item active">Dealer Locator</li>
+                    </ol>
+                    <!-- Modal -->
+                    <div class="modal fade" id="form_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Dealer Inventory List</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <!-- Input Form -->
+                                <form id="form_dealers">
+                                    <!-- Modal Body -->
+                                    <div class="modal-body">
+                                        <input type="hidden" name="user_id" id="user_id"/>
+                                        <!-- Dealer Name Field -->
+                                        <div class="row">
+                                            
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="hidden" name="VIN" id="VIN" required>
+                                            </div>
+                                        </div>
+                                        <!-- Area Field -->
+                                        <div class="row">
+                                            
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="hidden" name="model_name" id="model_name" required>
+                                            </div>
+                                        </div>
+                                        <!-- Address Field -->
+                                        <div class="row">
+                                            
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="hidden" name="category" id="category" required>
+                                            </div>
+                                        </div>
+                                        <!-- Phone Field -->
+                                        <div class="row">
+                                            
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="hidden" name="price" id="price" required>
+                                            </div>
+                                        </div>
+                                        <!-- VIN Field -->
+                                        <div class="row mb-3">
+                                            
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="hidden" name="color" id="color" required>
+                                            </div>
+                                        </div>
+                                        <!-- Manufacturer ID Field -->
+                                        <div class="row">
+                                            
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="hidden" name="stock" id="stock" required>
+                                            </div>
+                                        </div>
+                                        <!-- Manufacturer ID Field -->
+                                        <div class="row">
+                                            
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="hidden" name="sales" id="sales" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            
+                                            <div class="col-sm-9">
+                                            <input class="form-control" type="hidden" name="dealer" id="dealer" required>
+                                            </div>
+                                        </div>
+                                    
+                                        <!-- Image Display Area -->
+                                        <div class="row mb-3">
+                                            
+                                            <div class="col-sm-9">
+                                                <input type="hidden" class="image-fluid image_display" accept="image/*">
+                                            </div>
+                                        </div>
+
+                                        <!-- Inventory Container -->
+                                        <div id="inventory_container"></div>
+                                        
+                                    </div>
+                                    <!-- End of Modal Body -->
+
+                                    <!-- Modal Footer -->
+                                    <div class="modal-footer d-flex align-items-center">
+                                        <button id="modal_close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button class="btn btn-primary w-25" type="submit">Submit</button>  
+                                    </div>
+                                    <!-- End of Modal Footer -->
+                                </form>
+                                <!-- End of Form Input -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of Modal -->
+
+                    
+                    <!-- Button trigger modal -->
+                    <div class="col-sm-2 ms-auto">
+                        <button id="modal_show" type="button" class="btn btn-white" data-bs-toggle="modal" data-bs-target="#form_modal">
+                            
+                        </button>
+                    </div>
+                
+                    <!-- End of Button trigger modal -->
+
+                        <hr />
+                
+                        <br />
+                        
+                    <div class="mt-3 text-center mb-4">
+                        <h4>Dealer List</h4>
+                    </div>
+
+                    <!-- Notification -->
+                    <div class="alert alert-danger d-none mb-2" role="alert"></div>
+                    <div class="alert alert-success d-none mb-2" role="alert"></div>
+
+                    <!-- Get All Data -->
+                    <div class="row" id="get_data">
+                        <div class="col-sm-12 d-flex justify-content-center align-items-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <b class="ms-2">Loading Data...</b>
+                        </div>
+                    </div>
+
+                    <!-- Pagination of All Data -->
+                    <div class="d-flex justify-content-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination" id="get_pagination"></ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- End of Content -->
+                
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; PeakMove 2023</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script> -->
+    </body>
+</html>
